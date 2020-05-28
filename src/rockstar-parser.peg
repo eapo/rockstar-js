@@ -113,7 +113,7 @@ BooleanOperation =
     )
     / l: (Comparison / SimpleExpression) { return l }
 
-Set = v:Variable _ ('is'/'was'/'were') _ e:Expression
+Set = v:Variable _ ('is'/'was'/'were'/'be') _ e:Expression
 	{ return {t: 'Set', v: v, e} }
 Put = 'Put' _ e:Expression _ 'into' _ v:Variable
 	{ return {t: 'Set', v: v, e} }
