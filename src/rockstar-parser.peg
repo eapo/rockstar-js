@@ -12,7 +12,7 @@ ProperWord = $([A-Z][A-Za-z]+)
 ProperVariable = $(ProperWord _ ProperVariable) / $ProperWord
 Pronoun = (
 	'it'i
-	/'he'i/'she'i/'him'i/'her'i
+	/'he'i/'she'i/'him'i/'her'i/'me'i
 	/'them'i/'they'i
 	/'ze'i/'hir'i/'zie'i/'zir'i/'xe'i/'xem'i/'ve'i/'ver'i
 )
@@ -20,9 +20,9 @@ Pronoun = (
 TypeLiteral = v:TypeLiteralValue { return {t: 'Literal', v} }
 TypeLiteralValue =
 	('nothing'/'nobody'/'nowhere'/'empty'/'gone') {return 0} // TODO null?
-	/ ('true'/'right'/'yes'/'ok') {return true}
-    / ('false'/'wrong'/'no'/'lies') {return false}
-    / 'mysterious' { return undefined}
+	/ ('true'/'right'/'yes'/'ok'/'good'i) {return true}
+    / ('false'/'wrong'/'no'/'lies'/'evil'i) {return false}
+    / 'mysterious'/'ether'i { return undefined}
 
 String = '"' v:$[^"]+ '"'
 	{ return {t: 'Literal', v}}
@@ -70,7 +70,7 @@ Comparator =
 
 Listen = 'Listen' _ 'to' _ v:Variable
 	{return {t:'Listen', v}}
-Say = ('Say'/'Shout'/'Whisper'/'Scream') _ e:Expression
+Say = ('Say'/'Shout'/'Whisper'/'Scream'/'Answer'/'Tell'/'Show') _ e:Expression
 	{return {t:'Say', e}}
 
 If = 'If' _ e:Expression
